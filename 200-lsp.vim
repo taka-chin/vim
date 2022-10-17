@@ -59,56 +59,72 @@ nnoremap fc :Commits<CR>
 
 "ddc settings
 " Customize global settings
-" " Use around source.
-" https://github.com/Shougo/ddc-around
-"call ddc#custom#patch_global('sources', ['around'])
-" Use matcher_head and sorter_rank.
-" https://github.com/Shougo/ddc-matcher_head
-" https://github.com/Shougo/ddc-sorter_rank
-"call ddc#custom#patch_global('sourceOptions', {
-"       \ '_': {
-"       \   'matchers': ['matcher_head'],
-"       \   'sorters': ['sorter_rank']},
-"       \ })
+ " Use around source.
+ " https://github.com/Shougo/ddc-around
+call ddc#custom#patch_global('sources', ['around'])
+ " Use matcher_head and sorter_rank.
+ " https://github.com/Shougo/ddc-matcher_head
+ " https://github.com/Shougo/ddc-sorter_rank
+call ddc#custom#patch_global('sourceOptions', {
+       \ '_': {
+       \   'matchers': ['matcher_head'],
+       \   'sorters': ['sorter_rank']},
+       \ })
 
- " Change source options
-" call ddc#custom#patch_global('sourceOptions', {
-"       \ 'around': {'mark': 'A'},
-"       \ })
-" call ddc#custom#patch_global('sourceParams', {
-"       \ 'around': {'maxSize': 500},
-"       \ })
+  " Change source options
+ call ddc#custom#patch_global('sourceOptions', {
+       \ 'around': {'mark': 'A'},
+       \ })
+ call ddc#custom#patch_global('sourceParams', {
+       \ 'around': {'maxSize': 500},
+       \ })
 
- " Customize settings on a filetype
-" call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
-" call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
-"       \ 'clangd': {'mark': 'C'},
-"       \ })
-" call ddc#custom#patch_filetype('markdown', 'sourceParams', {
-"       \ 'around': {'maxSize': 100},
-"       \ })
+  " Customize settings on a filetype
+ call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+ call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+       \ 'clangd': {'mark': 'C'},
+       \ })
+ call ddc#custom#patch_filetype('markdown', 'sourceParams', {
+       \ 'around': {'maxSize': 100},
+       \ })
 
  " Mappings
 
  "<TAB>: completion.
-" inoremap <silent><expr> <TAB>
-" \ ddc#map#pum_visible() ? '<C-n>' :
-" \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-" \ '<TAB>' : ddc#map#manual_complete()
+inoremap <silent><expr> <TAB>
+\ ddc#map#pum_visible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<TAB>' : ddc#map#manual_complete()
 
  " <S-TAB>: completion back.
-" inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
 
  " Use ddc.
-" call ddc#enable()
+call ddc#enable()
 
 " MAP
 map f <Plug>(easymotion-fl)
 map t <Plug>(easymotion-tl)
 map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
 colorscheme codedark
+"inoremap <silent> jj <ESC>
+let g:airline#extensions#tabline#enabled = 1
+" leaderをスペースへ設定
+let mapleader = "\<Space>"
+" vim関連map
+nnoremap <silent> <Leader>vr :new ~/.vimrc<CR>   
+nnoremap <silent> <Leader>vc :new ~/.vim/_config/200-lsp.vim<CR>   
+nnoremap <silent> <Leader>vm :new ~/.vim/_config/map.vim<CR>   
+nnoremap <silent> <Leader>r :source ~/.vimrc<CR>  
+
+"Undoの永続化
+if has('persistent_undo')
+	let undo_path = expand('~/.vim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
 
 "parmsetting
 let g:airline_theme = 'codedark'
@@ -122,3 +138,24 @@ let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 0
 let g:c_formatter_42_set_equalprg=1
+"let g:c_formatter_42_format_on_save=1
+
+" 公式リポジトリを参考にキーマップを追加
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
+
+" アイコンに色をつける
+augroup my-glyph-palette
+  autocmd! *
+  autocmd FileType fern call glyph_palette#apply()
+  autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
