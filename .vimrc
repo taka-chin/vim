@@ -3,6 +3,8 @@ set number
 set relativenumber
 set wildmenu
 set clipboard=unnamed,autoselect
+set backspace=indent,eol,start
+set completeopt=menuone,noinsert,noselect,preview
 
 call plug#begin() 
 "42header
@@ -36,6 +38,7 @@ Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/glyph-palette.vim'
+Plug 'cocopon/pgmnt.vim' 
 
 " File explorer 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } 
@@ -60,8 +63,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings' 
 
 "auto complete 
-"Plug 'prabirshrestha/asyncomplete.vim' 
-"Plug 'prabirshrestha/asyncomplete-lsp.vim' 
+Plug 'prabirshrestha/asyncomplete.vim' 
+Plug 'prabirshrestha/asyncomplete-lsp.vim' 
 
 " detail settings
 "Plug 'ajh17/vimcompletesme' 
