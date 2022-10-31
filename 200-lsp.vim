@@ -16,7 +16,10 @@ augroup lsp_install
 augroup END
 command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
 
-"" fzf.vim
+"man.vim
+map <leader>k <Plug>(Man)
+
+" fzf.vim
 " Ctrl+pでファイル検索を開く
 " git管理されていれば:GFiles、そうでなければ:Filesを実行する
 fun! FzfOmniFiles()
@@ -108,23 +111,25 @@ map t <Plug>(easymotion-tl)
 map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
-nnoremap re :source ~/.vimrc<CR>  
+" nnoremap re :source ~/.vimrc<CR>  
 nnoremap 42 :Stdheader<CR>  
 "colorscheme
 " colorscheme codedark
 colorscheme iceberg
+" colorscheme deep-space
 
 "inoremap <silent> jj <ESC>
 let g:airline#extensions#tabline#enabled = 1
 " leaderをスペースへ設定
 let mapleader = "\<Space>"
 " vim関連map
-nnoremap <silent> <Leader>vr :new ~/.vimrc<CR>   
 nnoremap <silent> <Leader>vc :new ~/.vim/_config/200-lsp.vim<CR>   
 nnoremap <silent> <Leader>vm :new ~/.vim/_config/map.vim<CR>   
-"nnoremap <silent> <Leader>r :source ~/.vimrc<CR>  
+nnoremap <silent> <Leader>vr :new ~/.vimrc<CR>
+" nnoremap <silent> <Leader>bk :highlight Normal ctermbg=none<CR>
+nnoremap <silent> <Leader>rr :source ~/.vimrc<CR>  
 
-nnoremap <silent> <Leader>term :bo terminal++rows=5<CR> 
+nnoremap <silent> <Leader>term :set autochdir<CR>:bo terminal++rows=10<CR> 
 "Undoの永続化
 if has('persistent_undo')
 	let undo_path = expand('~/.vim/undo')
@@ -136,12 +141,13 @@ endif
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-" inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
 
 "parmsetting
-" let g:airline_theme = 'codedark'
-let g:airline_solarized_bg='dark'
+" let g:airline_theme = 'iceberg'
+" let g:airline_solarized_bg='dark'
+" let g:airline_theme='deep_space'
 let g:fern#renderer = 'nerdfont'
+" let g:fern#renderer = 'iceberg'
 let g:user42 = 'tyamauch'
 let g:mail42 = 'tyamauch@student.42.fr'
 let g:lsp_diagnostics_enabled = 1
@@ -151,7 +157,9 @@ let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 50
 let g:lsp_text_edit_enabled = 0
 let g:c_formatter_42_set_equalprg=1
-let g:c_formatter_42_format_on_save=1
+" let g:c_formatter_42_format_on_save=1
+let g:c_formatter_42_format_on_save=0
+" let g:glyph_palette#palette=0
 
 " 公式リポジトリを参考にキーマップを追加
 function! s:fern_settings() abort
