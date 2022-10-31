@@ -6,6 +6,10 @@ set clipboard=unnamed,autoselect
 set backspace=indent,eol,start
 set completeopt=menuone,noinsert,noselect,preview
 
+" set background=dark
+set termguicolors
+" colorscheme deep-space
+
 call plug#begin() 
 "42header
 Plug '42Paris/42header'
@@ -14,8 +18,12 @@ Plug '42Paris/42header'
 Plug 'cacharle/c_formatter_42.vim'
 
 " Template を作成 ex. :Template main 
-Plug 'mattn/vim-sonictemplate' 
+" Plug 'mattn/vim-sonictemplate' 
 
+"session管理
+Plug 'tpope/vim-obsession'
+"man
+Plug 'vim-utils/vim-man'
 " Git操作
 Plug 'tpope/vim-fugitive'
 
@@ -36,10 +44,10 @@ Plug 'lambdalisue/glyph-palette.vim'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+ Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'cocopon/pgmnt.vim' 
-
+" Plug 'tyrannicaltoucan/vim-deep-space'
 " File explorer 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } 
 Plug 'junegunn/fzf.vim' 
