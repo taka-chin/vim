@@ -9,7 +9,7 @@ set completeopt=menuone,noinsert,noselect,preview
 
 set wildmenu          " コマンドラインでTAB補完時に候補メニューを表示
 
-set tabstop=2         " タブを2文字分にする
+set tabstop=4         " タブを2文字分にする
 
 set noswapfile        " スワップファイル(.swp)を生成しない
 set nobackup          " バックアップファイル(~)を生成しない
@@ -49,7 +49,7 @@ if has('persistent_undo')
 endif
 
 call plug#begin('~/.vim/plugged')
-  Plug 'vim-jp/vimdoc-ja'
+  " Plug 'vim-jp/vimdoc-ja'
   Plug 'vim-utils/vim-man'
   " Plug 'itchyny/lightline.vim'
   Plug 'vim-airline/vim-airline'
@@ -74,6 +74,7 @@ call plug#begin('~/.vim/plugged')
   Plug '42Paris/42header'
   Plug 'cacharle/c_formatter_42.vim'
   Plug 'mattn/vim-yoshi'
+  Plug 'mattn/vim-chatgpt'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -110,7 +111,8 @@ let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 
 let g:lsp_diagnostics_enabled = 1                        " Diagnosticsを有効にする
-let g:lsp_diagnostics_echo_cursor = 1                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
+" let g:lsp_diagnostics_echo_cursor = 1                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
+let g:lsp_diagnostics_echo_cursor = 0                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
 let g:lsp_diagnostics_echo_delay = 50                    " Diagnosticsの表示の遅延を50msに設定
 let g:lsp_diagnostics_float_cursor = 1                   " カーソル下のエラー、警告、情報、ヒントをフロート表示
 let g:lsp_diagnostics_signs_enabled = 1                  " 画面左端のサイン列にエラー、警告、情報、ヒントのアイコンを 表示
@@ -153,4 +155,4 @@ let g:user42 = 'tyamauch'
 let g:mail42 = 'tyamauch@student.42.fr'
 let g:c_formatter_42_set_equalprg=1
 " let g:c_formatter_42_format_on_save=1
-let g:c_formatter_42_format_on_save=0
+" let g:c_formatter_42_format_on_save=0
