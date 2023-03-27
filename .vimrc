@@ -22,15 +22,10 @@ set clipboard=unnamed,autoselect
 
 " colorscheme iceberg
 nmap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><Esc> " 文字列検索のハイライトオフ
-" nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
-" nnoremap 42 :Stdheader<CR>  
 
 " vim関連map
 let mapleader = "\<Space>"
-" nnoremap <silent> <Leader>vc :new ~/.vim/_config/200-lsp.vim<CR>   
-" nnoremap <silent> <Leader>vm :new ~/.vim/_config/map.vim<CR>   
 nnoremap <silent> <Leader>vr :new ~/.vimrc<CR>
-" nnoremap <silent> <Leader>bk :highlight Normal ctermbg=none<CR>
 nnoremap <silent> <Leader>rr :source ~/.vimrc<CR>  
 
 nnoremap <silent> <Leader>term :set autochdir<CR>:bo terminal++rows=10<CR> 
@@ -49,9 +44,7 @@ if has('persistent_undo')
 endif
 
 call plug#begin('~/.vim/plugged')
-  " Plug 'vim-jp/vimdoc-ja'
   Plug 'vim-utils/vim-man'
-  " Plug 'itchyny/lightline.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'lambdalisue/fern.vim'
@@ -59,7 +52,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'lambdalisue/nerdfont.vim'
   Plug 'yuki-yano/fern-preview.vim'
   Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-  " Plug 'lambdalisue/fern-git-status.vim'
   Plug 'lambdalisue/glyph-palette.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
@@ -69,21 +61,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'liuchengxu/vim-which-key'
   Plug 'cocopon/pgmnt.vim'
   Plug '42Paris/42header'
   Plug 'cacharle/c_formatter_42.vim'
   Plug 'mattn/vim-yoshi'
-  Plug 'mattn/vim-chatgpt'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'angr'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline_left_sep = ' »'
-" let g:airline_left_sep = ' ▶'
-" let g:airline_right_sep = ' «'
-" let g:airline_right_sep = ' ◀'
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-t> <Plug>AirlineSelectNextTab
 " 公式リポジトリを参考にキーマップを追加
@@ -111,8 +97,7 @@ let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 
 let g:lsp_diagnostics_enabled = 1                        " Diagnosticsを有効にする
-" let g:lsp_diagnostics_echo_cursor = 1                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
-let g:lsp_diagnostics_echo_cursor = 0                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
+let g:lsp_diagnostics_echo_cursor = 1                    " カーソル下のエラー、警告、情報、ヒントを画面下部のコマンド ラインに表示
 let g:lsp_diagnostics_echo_delay = 50                    " Diagnosticsの表示の遅延を50msに設定
 let g:lsp_diagnostics_float_cursor = 1                   " カーソル下のエラー、警告、情報、ヒントをフロート表示
 let g:lsp_diagnostics_signs_enabled = 1                  " 画面左端のサイン列にエラー、警告、情報、ヒントのアイコンを 表示
@@ -130,22 +115,6 @@ imap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 set timeoutlen=500 " 100msだと他のキーマッピングが上手く動かないため500msに設定
 
-let g:which_key_ignore_outside_mappings = 1 " 辞書にないマッピングは非表示にする
-let g:which_key_sep = '→'
-let g:which_key_use_floating_win = 0
-
-let g:which_key_map_tabs = { 'name' : '+tabs' }
-call which_key#register('t', 'g:which_key_map_tabs')
-nmap t :<c-u>WhichKey 't'<CR>
-vmap t :<c-u>WhichKeyVisual 't'<CR>
-
-let g:which_key_map_tabs.e = [':tabedit'   , 'new']
-let g:which_key_map_tabs.t = [':tab split' , 'split']
-let g:which_key_map_tabs.h = [':tabprev'   , 'focus left']
-let g:which_key_map_tabs.l = [':tabnext'   , 'focus right']
-let g:which_key_map_tabs.H = [':tabmove -1', 'move left']
-let g:which_key_map_tabs.L = [':tabmove +1', 'move right']
-
 "test
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
 nnoremap 42 :Stdheader<CR>  
@@ -155,4 +124,4 @@ let g:user42 = 'tyamauch'
 let g:mail42 = 'tyamauch@student.42.fr'
 let g:c_formatter_42_set_equalprg=1
 " let g:c_formatter_42_format_on_save=1
-" let g:c_formatter_42_format_on_save=0
+let g:c_formatter_42_format_on_save=0
